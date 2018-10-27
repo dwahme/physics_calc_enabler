@@ -30,3 +30,6 @@ print("Mass: " + str(mass_ave) + " +/- " + str(mass_d))
 print("Omega: " + str(omega_ave) + " +/- " + str(omega_d))
 print("Radius: " + str(radius_ave) + " +/- " + str(radius_d))
 print("Rotational Force: " + str(rot_force) + " +/- " + str(rot_force_uncert))
+
+t_v = [1, 5, 3, 7, 4, 3]
+functions.pretty_print_tables(t_v)
