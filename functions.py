@@ -2,7 +2,6 @@ import math
 import statistics
 
 def get_average(values):
-
     total = sum(values)
     amount = len(values)
 
@@ -10,6 +9,9 @@ def get_average(values):
 
 def calc_uncertainty(values):
     return statistics.stdev(values)
+
+def percent_diff(expected, actual):
+    return (expected - actual) / expected
 
 def calc_rotational_force(mass, omega, radius):
     return mass * omega * omega * radius
