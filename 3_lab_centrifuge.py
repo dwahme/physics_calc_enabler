@@ -1,5 +1,10 @@
 import functions
 
+
+##################
+# BEGIN DATA INPUT
+##################
+
 # Add data here
 time_1 = 1
 mass_h = 0
@@ -24,6 +29,10 @@ x1 = 1 # to avoid div by 0
 y1 = 0
 x2 = 0
 y2 = 0
+
+################
+# END DATA INPUT
+################
 
 # Calculate values
 radius_values = [radius_min, radius_max]
