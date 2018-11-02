@@ -51,6 +51,8 @@ g2_final_velocities = [
 
 # CALCULATIONS
 
+# predict the ratio of the velocities of the gliders using masses
+
 # get mean value of final velocity for g1
 # get mean value of final velocity for g2
 # get uncertainty of final velocity for g1
