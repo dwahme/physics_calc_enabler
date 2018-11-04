@@ -37,6 +37,9 @@ def calc_omega_uncertainty(time, time_d):
 def calc_weight(mass):
     return 9.8 * mass
 
+def calc_momentum(mass, velocity):
+    return mass * velocity
+
 def calc_ke(mass, velocity):
         return mass * velocity * velocity / 2
 
