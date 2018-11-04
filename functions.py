@@ -7,14 +7,23 @@ def get_average(values):
 
     return total / amount
 
-def calc_uncertainty(values):
-    return statistics.stdev(values)
+def calc_uncertainty(values, version = "simple"):
+
+    if version == "stddev":
+        return statistics.stdev(values)
+    else:
+        max_val = max(values)
+        min_val = min(values)
+        return (max_val - min_val) / 2
 
 def percent_diff(expected, actual):
     return (expected - actual) / expected
 
 def calc_slope(x1, y1, x2, y2):
     return (y2 - y1) / (x2 - x1)
+
+def calc_velocity(distance, time):
+    return distance / time
 
 def calc_omega(time):
     return 2 * math.pi / time
