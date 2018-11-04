@@ -149,9 +149,13 @@ inelastic_KE_g2_1 = []
 for col_vel in inelastic_velocities_g1_g2:
     inelastic_KE_g2_1.append(f.calc_ke(mass_g2, col_vel))
 
-print(inelastic_KE_g1_0)
-print(inelastic_KE_g1_1)
-print(inelastic_KE_g2_0)
-print(inelastic_KE_g2_1)
 # calc mean of KE's
+avg_inelastic_KE_g1_0 = f.get_average(inelastic_KE_g1_0)
+avg_inelastic_KE_g1_1 = f.get_average(inelastic_KE_g1_1)
+avg_inelastic_KE_g2_0 = f.get_average(inelastic_KE_g2_0)
+avg_inelastic_KE_g2_1 = f.get_average(inelastic_KE_g2_1)
 # calc spread of KE's
+spread_inelastic_KE_g1_0 = f.calc_uncertainty(inelastic_KE_g1_0) * 2
+spread_inelastic_KE_g1_1 = f.calc_uncertainty(inelastic_KE_g1_1) * 2
+spread_inelastic_KE_g2_0 = f.calc_uncertainty(inelastic_KE_g2_0) * 2
+spread_inelastic_KE_g2_1 = f.calc_uncertainty(inelastic_KE_g2_1) * 2
