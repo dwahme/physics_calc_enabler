@@ -1,4 +1,4 @@
-import functions
+import functions as f
 
 ##################
 # BEGIN DATA INPUT
@@ -10,15 +10,22 @@ mass_g2 = 0
 mass_g2_uncertainty = 0
 
 # explosion measurements
+explode_flag_length = 0
 g1_explode_times = [
     0, 0
 ]
 g2_explode_times = [
     0, 0
 ]
+g1_explode_velocities = [
+    0, 0
+]
+g2_explode_velocities = [
+    0, 0
+]
 
 # elastic collision measurements
-flag_length = 0
+elastic_flag_length = 0
 g1_initial_times = [
     0, 0
 ]
@@ -52,14 +59,28 @@ g2_final_velocities = [
 # CALCULATIONS
 
 # predict the ratio of the velocities of the gliders using masses
+v_ratio = mass_g1 / mass_g2
 
+# Calculate velocites if necessary
+if explode_flag_length > 0:
+    g1_explode_velocities = [f.calc_velocity(explode_flag_length, time) 
+        for time in g1_explode_times]
+    g2_explode_velocities = [f.calc_velocity(explode_flag_length, time) 
+        for time in g2_explode_times]
+
+# Get explosion velocities and uncertainties
 # get mean value of final velocity for g1
+g1_explode_ave = f.get_average(g1_explode_velocities)
 # get mean value of final velocity for g2
+g2_explode_ave = f.get_average(g2_explode_velocities)
 # get uncertainty of final velocity for g1
+g1_explode_uncert = f.calc_uncertainty(g1_explode_velocities)
 # get uncertainty of final velocity for g2
+g2_explode_uncert = f.calc_uncertainty(g2_explode_velocities)
 
-# calculate KE for g1 before explosion
-# calculate KE for g2 after explosion
+# calculate KE before explosion
+
+# calculate KE after explosion
 
 # if flag_length != 0, then need to calc velocities from times
     # calculate g1 velocities after the elastic collision
