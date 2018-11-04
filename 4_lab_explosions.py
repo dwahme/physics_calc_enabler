@@ -69,18 +69,14 @@ if explode_flag_length > 0:
         for time in g2_explode_times]
 
 # Get explosion velocities and uncertainties
-# get mean value of final velocity for g1
-g1_explode_ave = f.get_average(g1_explode_velocities)
-# get mean value of final velocity for g2
-g2_explode_ave = f.get_average(g2_explode_velocities)
-# get uncertainty of final velocity for g1
-g1_explode_uncert = f.calc_uncertainty(g1_explode_velocities)
-# get uncertainty of final velocity for g2
-g2_explode_uncert = f.calc_uncertainty(g2_explode_velocities)
+g1_explode_vel_ave = f.get_average(g1_explode_velocities)
+g2_explode_vel_ave = f.get_average(g2_explode_velocities)
+g1_explode_vel_uncert = f.calc_uncertainty(g1_explode_velocities)
+g2_explode_vel_uncert = f.calc_uncertainty(g2_explode_velocities)
 
-# calculate KE before explosion
-
-# calculate KE after explosion
+# calculate KE before and after explosion
+explode_ke_0 = f.calc_ke(mass_g1, 0) + f.calc_ke(mass_g2, 0)
+explode_ke_1 = f.calc_ke(mass_g1, g1_explode_vel_ave) + f.calc_ke(mass_g2, g2_explode_vel_ave)
 
 # if flag_length != 0, then need to calc velocities from times
     # calculate g1 velocities after the elastic collision
