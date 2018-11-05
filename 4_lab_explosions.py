@@ -67,7 +67,7 @@ tot_inelastic_vels_1 = [
 
 # Explosion calculations
 # predict the ratio of the velocities of the gliders using masses
-v_ratio = mass_g1 / mass_g2
+v_ratio = mass_g2 / mass_g1
 
 # Calculate velocites if necessary
 if flag_length > 0:
