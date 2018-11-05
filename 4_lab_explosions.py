@@ -4,7 +4,7 @@ import functions as f
 # BEGIN DATA INPUT
 ##################
 
-mass_g1 = 0
+mass_g1 = 1
 mass_g1_uncertainty = 0
 mass_g2 = 1
 mass_g2_uncertainty = 0
@@ -52,7 +52,7 @@ tot_inelastic_times_1 = [
     0, 0
 ]
 g1_inelastic_vels_0 = [
-    0, 0
+    1, 1
 ]
 tot_inelastic_vels_1 = [
     0, 0
@@ -135,23 +135,16 @@ inelastic_predicted_vels = [predict_velocity(vel, mass_g1, mass_g2)
 
 # compare prediction with measured
 inelastic_comparisons = [f.percent_diff(x[0], x[1])
-    for x in zip(tot_inelastic_vels_1, inelastic_predicted_vels)]
+    for x in zip(inelastic_predicted_vels, tot_inelastic_vels_1)]
 
-# Inelastic collision calculations
-# for each inelastic collision, calc KE for g1 before collis
-inelastic_KE_g1_0 = []
-for col_vel in g1_inelastic_vels_0:
-    inelastic_KE_g1_0.append(f.calc_ke(mass_g1, col_vel))
-# for each inelastic collision, calc KE for g1 after collis
-inelastic_KE_g1_1 = []
-for col_vel in tot_inelastic_vels_1:
-    inelastic_KE_g1_1.append(f.calc_ke(mass_g1, col_vel))
-# for each inelastic collision, calc KE for g2 before collis
+# Calculate KE for g1 and total before and after collision
+inelastic_KE_g1_0 = [f.calc_ke(mass_g1, col_vel) 
+    for col_vel in g1_inelastic_vels_0]
+inelastic_KE_g1_1 = [f.calc_ke(mass_g1, col_vel)
+    for col_vel in tot_inelastic_vels_1]
 inelastic_KE_g2_0 = [0 for _ in g1_inelastic_vels_0]
-# for each inelastic collision, calc KE for g2 after collis
-inelastic_KE_g2_1 = []
-for col_vel in tot_inelastic_vels_1:
-    inelastic_KE_g2_1.append(f.calc_ke(mass_g2, col_vel))
+inelastic_KE_g2_1 = [f.calc_ke(mass_g2, col_vel)
+    for col_vel in tot_inelastic_vels_1]
 
 # calc mean of KE's
 avg_inelastic_KE_g1_0 = f.get_average(inelastic_KE_g1_0)
