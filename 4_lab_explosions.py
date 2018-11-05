@@ -48,25 +48,13 @@ g2_elastic_vels_1 = [
 g1_inelastic_times_0 = [
     0, 0
 ]
-g2_inelastic_times_0 = [
-    0, 0
-]
-g1_inelastic_times_1 = [
-    0, 0
-]
-g2_inelastic_times_1 = [
+tot_inelastic_times_1 = [
     0, 0
 ]
 g1_inelastic_vels_0 = [
     0, 0
 ]
-g2_inelastic_vels_0 = [
-    0, 0
-]
-g1_inelastic_vels_1 = [
-    0, 0
-]
-g2_inelastic_vels_1 = [
+tot_inelastic_vels_1 = [
     0, 0
 ]
 
@@ -99,7 +87,7 @@ explode_ke_0 = f.calc_ke(mass_g1, 0) + f.calc_ke(mass_g2, 0)
 explode_ke_1 = f.calc_ke(mass_g1, g1_explode_vel_ave) + f.calc_ke(mass_g2, g2_explode_vel_ave)
 
 
-# Elastic collision calclations
+# Elastic collision calculations
 # Calculate velocites if necessary
 if flag_length > 0:
     g1_elastic_vels_0 = [f.calc_velocity(flag_length, time)
@@ -129,24 +117,40 @@ elastic_momentum_ave_1 = f.get_average(elastic_momentum_tot_1)
 elastic_momentum_spread_0 = f.calc_uncertainty(elastic_momentum_tot_0) * 2
 elastic_momentum_spread_1 = f.calc_uncertainty(elastic_momentum_tot_1) * 2
 
+
+# Inelastic collision calculations
+# Calculate velocites if necessary
+if flag_length > 0:
+    g1_inelastic_vels_0 = [f.calc_velocity(flag_length, time)
+        for time in g1_inelastic_times_0]
+    tot_inelastic_vels_1 = [f.calc_velocity(flag_length, time)
+        for time in tot_inelastic_times_1]
+
 # calculate predicted velocity after the collision
-#todo: dawson pls ^
+def predict_velocity(v0, m1, m2):
+    return m1 * v0 / (m1 + m2)
+
+inelastic_predicted_vels = [predict_velocity(vel, mass_g1, mass_g2)
+    for vel in g1_inelastic_vels_0]
+
 # compare prediction with measured
+inelastic_comparisons = [f.percent_diff(x[0], x[1])
+    for x in zip(tot_inelastic_vels_1, inelastic_predicted_vels)]
 
 # Inelastic collision calculations
 # for each inelastic collision, calc KE for g1 before collis
 inelastic_KE_g1_0 = []
-for col_vel in inelastic_velocities_g1:
+for col_vel in g1_inelastic_vels_0:
     inelastic_KE_g1_0.append(f.calc_ke(mass_g1, col_vel))
 # for each inelastic collision, calc KE for g1 after collis
 inelastic_KE_g1_1 = []
-for col_vel in inelastic_velocities_g1_g2:
+for col_vel in tot_inelastic_vels_1:
     inelastic_KE_g1_1.append(f.calc_ke(mass_g1, col_vel))
 # for each inelastic collision, calc KE for g2 before collis
-inelastic_KE_g2_0 = [0 for _ in inelastic_velocities_g1]
+inelastic_KE_g2_0 = [0 for _ in g1_inelastic_vels_0]
 # for each inelastic collision, calc KE for g2 after collis
 inelastic_KE_g2_1 = []
-for col_vel in inelastic_velocities_g1_g2:
+for col_vel in tot_inelastic_vels_1:
     inelastic_KE_g2_1.append(f.calc_ke(mass_g2, col_vel))
 
 # calc mean of KE's
