@@ -148,11 +148,66 @@ inelastic_KE_g2_1 = [f.calc_ke(mass_g2, col_vel)
 
 # calc mean of KE's
 avg_inelastic_KE_g1_0 = f.get_average(inelastic_KE_g1_0)
-avg_inelastic_KE_g1_1 = f.get_average(inelastic_KE_g1_1)
 avg_inelastic_KE_g2_0 = f.get_average(inelastic_KE_g2_0)
+avg_inelastic_KE_g1_1 = f.get_average(inelastic_KE_g1_1)
 avg_inelastic_KE_g2_1 = f.get_average(inelastic_KE_g2_1)
 # calc spread of KE's
 spread_inelastic_KE_g1_0 = f.calc_uncertainty(inelastic_KE_g1_0) * 2
-spread_inelastic_KE_g1_1 = f.calc_uncertainty(inelastic_KE_g1_1) * 2
 spread_inelastic_KE_g2_0 = f.calc_uncertainty(inelastic_KE_g2_0) * 2
+spread_inelastic_KE_g1_1 = f.calc_uncertainty(inelastic_KE_g1_1) * 2
 spread_inelastic_KE_g2_1 = f.calc_uncertainty(inelastic_KE_g2_1) * 2
+
+
+# Report results
+
+# Explosion results
+print("***** Explosion results")
+print("Expected explosion velocity ratio:", v_ratio)
+if flag_length > 0:
+    print("m1 explosion velocities", g1_explode_velocities)
+    print("m2 explosion velocities", g2_explode_velocities)
+print("Ave explosion velocity for m1:", g1_explode_vel_ave)
+print("Ave explosion velocity for m2:", g2_explode_vel_ave)
+print("Explosion velocity ratio uncertainty for m1:", g1_explode_vel_uncert)
+print("Explosion velocity ratio uncertainty for m2:", g2_explode_vel_uncert)
+print("KE before explosion:", explode_ke_0)
+print("KE after explosion:", explode_ke_1)
+print("")
+
+# Elastic collision results
+print("***** Elastic collision results")
+if flag_length > 0:
+    print("m1 elastic velocities 0", g1_elastic_vels_0)
+    print("m1 elastic velocities 0", g1_elastic_vels_1)
+    print("m2 elastic velocities 1", g2_elastic_vels_1)
+print("m1 momentums 0:", g1_momentums_0)
+print("m2 momentums 0:", g2_momentums_0)
+print("m1 momentums 0:", g1_momentums_1)
+print("m2 momentums 0:", g2_momentums_1)
+print("Initial total elastic momentum:", elastic_momentum_tot_0)
+print("Final total elastic momentum:", elastic_momentum_tot_1)
+print("Mean initial elastic momentum:", elastic_momentum_ave_0)
+print("Mean final elastic momentum:", elastic_momentum_ave_1)
+print("Mean initial elastic momentum spread:", elastic_momentum_spread_0)
+print("Mean final elastic momentum spread:", elastic_momentum_spread_1)
+print("")
+
+# Inelastic collision results
+print("***** Inelastic collision results")
+if flag_length > 0:
+    print("m1 initial velocities:", g1_inelastic_vels_0)
+    print("Total final velocities:", tot_inelastic_vels_1)
+print("Predicted velocities after collision:", inelastic_predicted_vels)
+print("Prediction comparisons (percent diff):", inelastic_comparisons)
+print("Initial m1 KE:", inelastic_KE_g1_0)
+print("Initial m2 KE:", inelastic_KE_g2_0)
+print("Final m1 KE:", inelastic_KE_g1_1)
+print("Final m2 KE:", inelastic_KE_g2_1)
+print("Average initial m1 KE:", avg_inelastic_KE_g1_0)
+print("Average initial m2 KE:", avg_inelastic_KE_g2_0)
+print("Average final m1 KE:", avg_inelastic_KE_g1_1)
+print("Average final m2 KE:", avg_inelastic_KE_g2_1)
+print("Average initial m1 KE spread:", spread_inelastic_KE_g1_0)
+print("Average initial m2 KE spread:", spread_inelastic_KE_g2_0)
+print("Average final m1 KE spread:", spread_inelastic_KE_g1_1)
+print("Average final m2 KE spread:", spread_inelastic_KE_g2_1)
