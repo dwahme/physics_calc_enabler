@@ -56,6 +56,9 @@ def calc_rotational_force_uncertainty(mass, omega, radius, d_mass, d_omega, d_ra
 
     return math.sqrt(error_square_sum)
 
+def calc_moment_inertia_disk(mass, radius):
+        return mass * radius * radius / 2
+
 def pretty_print_tables(values):
     print("*===========*")
     print("|trial|value|")
