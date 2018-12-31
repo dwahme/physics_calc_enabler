@@ -18,3 +18,6 @@ All tests are located in `tests/` using `pytest` (TODO- add link). These can be 
 - Add more error analysis tools in `error.py`
 - Formalize design for `units` submodule
 - Switch over lab examples to use `physics` package instead of `functions.py`
+- Integrate github actions for continuous integration
+- Document existing code
+- Find more TODOs
