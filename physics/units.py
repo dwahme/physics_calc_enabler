@@ -62,6 +62,9 @@ class Dimensional:
         return "{} {}{}".format(self.value, num_string, denom_string)
 
     def __add__(self, other):
+        if type(other) != Dimensional:
+            raise Exception("{} must be Dimensional type".format(other))
+
         if self.units_num == other.units_num and self.units_denom == other.units_denom:
             return Dimensional(self.value + other.value,
                 self.units_num / self.units_denom)
@@ -69,11 +72,34 @@ class Dimensional:
         raise Exception("{} and {} have different units".format(self, other))
 
     def __sub__(self, other):
+        if type(other) != Dimensional:
+            raise Exception("{} must be Dimensional type".format(other))
+
         if self.units_num == other.units_num and self.units_denom == other.units_denom:
-            return Dimensional(self.value + other.value,
+            return Dimensional(self.value - other.value,
                 self.units_num / self.units_denom)
 
         raise Exception("{} and {} have different units".format(self, other))
+
+    def __mul__(self, other):
+        if type(other) == int or type(other) == float:
+            other = Dimensional(other, 1)
+
+        if type(other) != Dimensional:
+            raise Exception("{} must be Dimensional type".format(other))
+
+        return Dimensional(self.value * other.value,
+            self.units_num * other.units_num / (self.units_denom * other.units_denom))
+
+    def __truediv__(self, other):
+        if type(other) == int or type(other) == float:
+            other = Dimensional(other, 1)
+
+        if type(other) != Dimensional:
+            raise Exception("{} must be Dimensional type".format(other))
+
+        return Dimensional(self.value / other.value,
+            self.units_num * other.units_denom / (self.units_denom * other.units_num))
 
 
 if __name__ == "__main__":
