@@ -56,6 +56,9 @@ class Dimensional:
         num_string = "".join([UNITS.name(x) for x in num_factors])
         denom_string = "/" + "/".join([UNITS.name(x) for x in denom_factors])
 
+        if num_string == "":
+            num_string = "1"
+
         if denom_string == "/":
             return "{} {}".format(self.value, num_string)
 
@@ -100,6 +103,20 @@ class Dimensional:
 
         return Dimensional(self.value / other.value,
             self.units_num * other.units_denom / (self.units_denom * other.units_num))
+
+    def __radd__(self, other):
+        return self + other
+
+    def __rsub__(self, other):
+        # TODO- FIX ORDER
+        return (Dimensional(1, 1) * other) - self
+    
+    def __rmul__(self, other):
+        return self * other
+
+    def __rtruediv__(self, other):
+        # TODO- FIX ORDER
+        return (Dimensional(1, 1) * other) / self
 
 
 if __name__ == "__main__":

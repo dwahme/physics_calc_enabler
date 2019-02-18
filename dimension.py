@@ -1,16 +1,17 @@
 from physics.units import UNITS, Dimensional
+import functions
 
-vel_unit = UNITS.m / UNITS.s / UNITS.s
+accel_unit = UNITS.m / UNITS.s / UNITS.s
 
-vel_0 = Dimensional(6, vel_unit)
-vel_1 = Dimensional(4, vel_unit)
+accel_0 = Dimensional(6, accel_unit)
+accel_1 = Dimensional(4, accel_unit)
 
-super_vel = vel_0 + vel_1
+accel_sum = accel_0 + accel_1
 
-print("{} + {} = {}".format(vel_0, vel_1, super_vel))
+print("{} + {} = {}".format(accel_0, accel_1, accel_sum))
 
 time = Dimensional(3, UNITS.s)
 dist = Dimensional(9, UNITS.m)
 
-vel = dist / time * 2
+vel = dist / time
 print(vel)
